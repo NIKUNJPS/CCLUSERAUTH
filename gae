@@ -1,0 +1,44 @@
+mkdir hello-app
+cd hello-app
+
+gcloud services enable appengine.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable storage.googleapis.com
+
+gcloud app create --region=asia-south1
+
+
+gcloud projects add-iam-policy-binding hello-app-495618 \
+  --member="serviceAccount:hello-app-495618@appspot.gserviceaccount.com" \
+  --role="roles/storage.admin"
+gcloud projects add-iam-policy-binding hello-app-495618 \
+  --member="serviceAccount:hello-app-495618@appspot.gserviceaccount.com" \
+  --role="roles/cloudbuild.builds.builder"
+gcloud projects add-iam-policy-binding hello-app-495618 \
+  --member="serviceAccount:hello-app-495618@appspot.gserviceaccount.com" \
+  --role="roles/editor"
+
+nano main.py
+1)
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello from Google App Engine"
+
+if __name__ == '__main__':
+    app.run()
+
+
+
+nano app.yaml
+runtime: python311
+
+nano requirements.txt
+flask
+
+gcloud app deploy
+
+gcloud app browse
+
