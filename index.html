@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Firebase Auth UI</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 340px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #667eea;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout { background: #e53e3e; }
+.update { background: #38a169; }
+
+.toggle { margin-top: 10px; cursor: pointer; }
+
+.hidden { display: none; }
+
+#error-box {
+  color: red;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+#success-box {
+  color: green;
+  font-size: 13px;
+  margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="auth-section">
+  <h2 id="form-title">Signup</h2>
+
+  <input id="name" placeholder="Full Name">
+  <input id="phone" placeholder="Phone Number">
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button id="action-btn">Signup</button>
+
+  <div class="toggle" onclick="toggleForm()">
+    Already registered? Login
+  </div>
+
+  <div id="error-box"></div>
+  <div id="success-box"></div>
+</div>
+
+<div id="user-section" class="hidden">
+  <h2 id="welcome-text"></h2>
+
+  <input id="new-password" type="password" placeholder="New Password">
+  <button class="update" onclick="updatePasswordUI()">Update Password</button>
+
+  <button class="logout" onclick="logout()">Logout</button>
+  <button class="logout" onclick="deleteAccount()">Delete Account</button>
+
+  <div id="error-box-user"></div>
+  <div id="success-box-user"></div>
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
